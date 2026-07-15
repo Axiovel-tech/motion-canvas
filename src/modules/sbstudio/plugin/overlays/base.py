@@ -49,7 +49,9 @@ class Overlay(metaclass=ABCMeta):
 
     @enabled.setter
     def enabled(self, value):
-        value = bool(value)
+        # Overlays draw into the 3D viewport, which does not exist in
+        # background mode; GPU shader creation would raise a SystemError there.
+        value = bool(value) and not bpy.app.background
 
         if self._enabled == value:
             return
