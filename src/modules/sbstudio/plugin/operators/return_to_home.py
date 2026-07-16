@@ -193,6 +193,10 @@ class ReturnToHomeOperator(StoryboardOperator):
         return context.window_manager.invoke_props_dialog(self)
 
     def execute_on_storyboard(self, storyboard: Storyboard, entries, context: Context):
+        # Scripted calls skip invoke(); keep their default spacing in sync
+        # with the proximity warning threshold like the dialog does.
+        if not self.use_custom_spacing:
+            self.spacing = get_proximity_warning_threshold(context)
         try:
             success = self._run(storyboard, context=context)
         except SkybrushStudioError:
