@@ -3,6 +3,7 @@ from typing import cast
 from bpy.props import BoolProperty, StringProperty
 from bpy.types import AddonPreferences, Context
 
+from sbstudio.api.constants import COMMUNITY_SERVER_URL
 from sbstudio.plugin.operators.set_server_url import SetServerURLOperator
 from sbstudio.plugin.utils import with_context
 
@@ -35,9 +36,10 @@ class DroneShowAddonGlobalSettings(AddonPreferences):
     server_url: str = StringProperty(
         name="Server URL",
         description=(
-            "URL of a dedicated Skybrush Studio server if you are using a "
-            "dedicated server. Leave it empty to use the server provided for "
-            "the community for free"
+            "URL of the trajectory engine to use. Leave it empty to use the "
+            "local Axio trajectory server (http://localhost:8000); enter the "
+            "Skybrush community server URL explicitly if you need it for "
+            "comparisons"
         ),
     )
 
@@ -59,11 +61,11 @@ class DroneShowAddonGlobalSettings(AddonPreferences):
         layout.prop(self, "server_url")
 
         row = layout.row()
-        op = row.operator(SetServerURLOperator.bl_idname, text="Use local server")
-        op.url = "http://localhost:8000"
-
-        op = row.operator(SetServerURLOperator.bl_idname, text="Use community server")
+        op = row.operator(SetServerURLOperator.bl_idname, text="Use Axio engine (local)")
         op.url = ""
+
+        op = row.operator(SetServerURLOperator.bl_idname, text="Use Skybrush community server")
+        op.url = COMMUNITY_SERVER_URL
 
         layout.prop(self, "enable_experimental_features")
 

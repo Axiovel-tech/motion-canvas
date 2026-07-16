@@ -7,6 +7,7 @@ from typing import TypeVar
 from urllib.error import URLError
 
 from sbstudio.api import SkybrushStudioAPI
+from sbstudio.api.constants import AXIO_SERVER_URL
 from sbstudio.api.errors import NoOnlineAccessAllowedError
 from sbstudio.api.version import ensure_backend_version
 from sbstudio.errors import SkybrushStudioError
@@ -40,8 +41,9 @@ def _get_api_from_url_and_key_or_license(url: str, key: str, license_file: str):
             api_key=key or (None if license_file else _fallback_api_key),
             license_file=license_file or None,
         )
-        if url:
-            result.url = url
+        # An empty URL means our own trajectory engine, NOT the Skybrush
+        # community server; the community server must be selected explicitly.
+        result.url = url or AXIO_SERVER_URL
     except ValueError as ex:
         log.error(f"Could not initialize Skybrush Studio API: {str(ex)}")
         raise
