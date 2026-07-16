@@ -190,6 +190,12 @@ def export_show_to_file_using_api(
         max_yaw_rate=safety_check.yaw_rate_warning_threshold if safety_check else 30,
         max_altitude=safety_check.altitude_warning_threshold if safety_check else 150,
         min_distance=safety_check.proximity_warning_threshold if safety_check else 3,
+        # was silently omitted: every export shipped the dataclass default
+        # (2.5 m) regardless of the scene's Min navigation altitude, so
+        # indoor shows tripped the engine's mid-flight nav-floor rule
+        min_nav_altitude=(
+            safety_check.min_navigation_altitude if safety_check else 2.5
+        ),
     )
 
     # get show segments
