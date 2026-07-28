@@ -1,4 +1,4 @@
-"""Global and file-specific state of Skybrush Studio for Blender."""
+"""Global and file-specific state of Motion Canvas."""
 
 import json
 from abc import ABCMeta, abstractmethod
@@ -40,7 +40,7 @@ class StateBase(metaclass=ABCMeta):
 
 class _SkybrushStudioFileState:
     """Class representing the state of a single .blend file loaded into
-    Skybrush Studio for Blender.
+    Motion Canvas.
     """
 
     _initialized: bool = False
@@ -77,7 +77,7 @@ _file_specific_state = _SkybrushStudioFileState()
 
 
 def get_file_specific_state() -> _SkybrushStudioFileState:
-    """Returns the file-specific state of Skybrush Studio for Blender."""
+    """Returns the file-specific state of Motion Canvas."""
     return _file_specific_state
 
 

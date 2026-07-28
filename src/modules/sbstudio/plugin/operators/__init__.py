@@ -1,4 +1,4 @@
-"""Blender operators registered by Skybrush Studio for Blender."""
+"""Blender operators registered by Motion Canvas."""
 
 from .add_markers_from_qr_code import AddMarkersFromQRCodeOperator
 from .add_markers_from_static_csv import AddMarkersFromStaticCSVOperator

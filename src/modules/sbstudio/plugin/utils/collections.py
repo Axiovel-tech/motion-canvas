@@ -66,7 +66,7 @@ def create_object_in_collection(
         remover: optional remover function that is called with the existing
             item and optionally the collection if an item with the given name
             already exists
-        internal: whether the object is an internal, Skybrush-specific object
+        internal: whether the object is an internal, Motion Canvas-specific object
             that should be marked explicitly
     """
     existing = get_object_in_collection(
@@ -129,7 +129,7 @@ def ensure_object_exists_in_collection(
             collection by calling `objects.link()` on the collection. When it is
             not specified, the `new()` or `load()` method of the collection will
             be used instead.
-        internal: whether the object is an internal, Skybrush-specific object
+        internal: whether the object is an internal, Motion Canvas-specific object
             that should be marked explicitly
 
     Returns:
@@ -199,7 +199,7 @@ def get_object_in_collection(
             to `True`, it will be passed through `create_internal_id()` to
             ensure that the names we use do not conflict with other public
             names created by the user in the collection.
-        internal: whether the object is an internal, Skybrush-specific object
+        internal: whether the object is an internal, Motion Canvas-specific object
             that should be marked explicitly
 
     Keyword arguments:

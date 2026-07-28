@@ -11,7 +11,7 @@ __all__ = ("RunAllMigrationOperators",)
 
 CONFIRMATION = """
 The format of this file needs to be updated to work correctly with
-the current version of the Skybrush add-on.
+the current version of the Motion Canvas add-on.
 
 The file will be updated from version {current} to {latest}.
 

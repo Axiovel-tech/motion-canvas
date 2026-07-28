@@ -58,12 +58,12 @@ def parse_compressed_dss_zip(
 ) -> dict[str, TrajectoryAndLightProgram]:
     """Parse a .zip file containing DSS PATH/PATH3 files (one file per drone,
     each containing baked animation with timestamped positions and colors),
-    using the Skybrush API.
+    using the trajectory engine API.
 
     Args:
         filename: the name of the .zip input file
         context: the Blender context
-        api: the Skybrush Studio API object to call for show file format conversion
+        api: the trajectory engine API object to call for show file format conversion
 
     Returns:
         dictionary mapping the imported object names to the corresponding

@@ -27,7 +27,7 @@ class PyroPayload:
     (0° points ahead (towards the yaw of the payload), 90° points up, -90° points down etc.)"""
 
     def as_api_dict(self) -> dict[str, Any]:
-        """Returns the pyro payload as a dictionary compatible with the Skybrush API."""
+        """Returns the pyro payload as a dictionary compatible with the trajectory engine API."""
         return {
             "name": self.name,
             "duration": self.duration,
@@ -105,7 +105,7 @@ class PyroMarkers:
 
     def as_api_dict(self, fps: int, ndigits: int = 3) -> dict[str, Any]:
         """Returns the pyro trigger event markers stored for a single drone
-        as a dictionary compatible with the Skybrush API."""
+        as a dictionary compatible with the trajectory engine API."""
         items = sorted(self.markers.items())
         events = [
             [round(marker.frame / fps, ndigits=ndigits), channel - 1, str(channel)]

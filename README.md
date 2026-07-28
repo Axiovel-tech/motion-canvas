@@ -1,29 +1,26 @@
-# Skybrush Studio for Blender
+# Motion Canvas
 
-![Skybrush Studio for Blender screenshot](/doc/screenshot_small.jpg)
+![Motion Canvas screenshot](/doc/screenshot_small.jpg)
 
-This repo contains [Skybrush Studio for Blender](https://skybrush.io),
-a professional drone show designer framework integrated into
+This repo contains [Motion Canvas](https://github.com/Axiovel-tech/motion-canvas),
+Axiovel's professional drone show designer framework integrated into
 [Blender](https://blender.org).
 
-The output of Skybrush Studio for Blender is a single `.skyc` file, which
-contains the trajectories and light programs for all the drones in the show.
-Using `.skyc` files together with the [Skybrush suite](https://skybrush.io)
-allows you to preview, validate, verify, analyze, plot and execute drone shows
-with a few clicks.
+The output of Motion Canvas is a single `.skyc` file, which contains the
+trajectories and light programs for all the drones in the show. `.skyc` files
+are compiled and certified by the [Axio trajectory
+engine](https://github.com/Axiovel-tech/axio-trajectory-engine) and executed by
+the rest of the Axiovel stack, allowing you to preview, validate, verify,
+analyze, plot and execute drone shows with a few clicks.
 
 ## Installation
 
-[Skybrush Studio for Blender](https://skybrush.io) is distributed as a
-ZIP file that can be installed in Blender according to the official
+Motion Canvas is distributed as a ZIP file that can be installed in Blender
+according to the official
 [Blender add-on guide](https://docs.blender.org/manual/en/latest/editors/preferences/addons.html).
-However, this repository does not contain the ZIP version of the plugin or the
-standalone executables but the _source code_ of the plugin. Therefore, in order
-to create the ZIP version and the executables on your own, you either need to
-[download it from us](https://skybrush.io) or [build the ZIP
-yourself](#building-the-plugin). Once you obtained the ZIP version of the
-plugin, follow the installation guide in our [online
-documentation](https://doc.collmot.com/public/skybrush-studio-for-blender/latest/install.html)
+This repository does not contain the ZIP version of the plugin or the
+standalone executables but the _source code_ of the plugin; you can [build the
+ZIP yourself](#building-the-plugin).
 
 ## Building the plugin
 
@@ -63,18 +60,27 @@ picked up by Blender.
 
 ## Support
 
-For any support questions please contact us on our [Discord server](https://skybrush.io/r/discord).
+For any support questions please open an issue in the
+[issue tracker](https://github.com/Axiovel-tech/motion-canvas/issues).
+
+## About this fork
+
+Motion Canvas is a fork of [Skybrush Studio for
+Blender](https://github.com/skybrush-io/studio-blender) by CollMot Robotics
+Ltd., maintained by Axiovel as free software under the same GPL license. It
+defaults to the local Axio trajectory engine as its backend.
 
 ## License
 
 Copyright 2020-2025 CollMot Robotics Ltd.
+Copyright 2025-2026 Axiovel
 
-Skybrush Studio for Blender is free software: you can redistribute it and/or
+Motion Canvas is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-Skybrush Studio for Blender is distributed in the hope that it will be useful,
+Motion Canvas is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
 more details.

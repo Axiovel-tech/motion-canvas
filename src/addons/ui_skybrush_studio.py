@@ -1,12 +1,12 @@
 bl_info = {
-    "name": "Skybrush Studio",
-    "author": "CollMot Robotics Ltd.",
+    "name": "Motion Canvas",
+    "author": "Axiovel (fork of Skybrush Studio by CollMot Robotics Ltd.)",
     "description": "Extends Blender with UI components for drone show design",
     "version": (4, 3, 0),
     "blender": (4, 4, 0),
     "category": "Interface",
-    "doc_url": "https://doc.collmot.com/public/skybrush-studio-for-blender/latest/",
-    "tracker_url": "https://github.com/skybrush-io/studio-blender/issues",
+    "doc_url": "https://github.com/Axiovel-tech/motion-canvas/tree/main/doc",
+    "tracker_url": "https://github.com/Axiovel-tech/motion-canvas/issues",
 }
 
 __license__ = "GPLv3"

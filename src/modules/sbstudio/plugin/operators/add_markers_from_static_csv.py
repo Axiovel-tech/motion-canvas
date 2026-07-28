@@ -19,12 +19,12 @@ log = logging.getLogger(__name__)
 
 
 class AddMarkersFromStaticCSVOperator(StaticMarkerCreationOperator, ImportHelper):
-    """Adds markers from a Skybrush-compatible static .csv file (containing a
+    """Adds markers from a Motion Canvas-compatible static .csv file (containing a
     single formation snapshot) to the currently selected formation.
     """
 
     bl_idname = "skybrush.add_markers_from_static_csv"
-    bl_label = "Import Skybrush static CSV"
+    bl_label = "Import static CSV"
     bl_options = {"REGISTER"}
 
     import_colors = BoolProperty(
@@ -33,7 +33,7 @@ class AddMarkersFromStaticCSVOperator(StaticMarkerCreationOperator, ImportHelper
         default=True,
     )
 
-    # List of file extensions that correspond to Skybrush static CSV files
+    # List of file extensions that correspond to static CSV files
     filter_glob = StringProperty(default="*.csv", options={"HIDDEN"})
     filename_ext = ".csv"
 
@@ -59,7 +59,7 @@ Item = tuple[NDArray[float], NDArray[int]]
 
 
 def parse_static_csv_zip(filename: str) -> dict[str, Item]:
-    """Parse a Skybrush static .csv file (containing a list of static positions
+    """Parse a static .csv file (containing a list of static positions
     and colors)
 
     Args:

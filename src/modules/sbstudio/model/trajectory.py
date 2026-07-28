@@ -36,7 +36,7 @@ class Trajectory:
         self.points.append(point)
 
     def as_dict(self, ndigits: int = 3, *, version: int = 2):
-        """Create a Skybrush-compatible dictionary representation of this
+        """Create an API-compatible dictionary representation of this
         instance.
 
         Parameters:
@@ -49,8 +49,8 @@ class Trajectory:
         """
         if version == 0:
             # Deprecated representation used in the past to send a trajectory for
-            # rendering to .skyc into the Skybrush Studio server. This
-            # representation indicates to the Skybrush Studio server that the
+            # rendering to .skyc into the trajectory engine server. This
+            # representation indicates to the trajectory engine server that the
             # points are samples and it is allowed to simplify the trajectory
             # further by eliminating unneeded points.
             #

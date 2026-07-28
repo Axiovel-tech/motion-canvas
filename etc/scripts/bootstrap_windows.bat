@@ -2,26 +2,19 @@
 :: inside the repo that can pose as a Blender addon path.
 ::
 :: You should run the script without any arguments, unless you are an
-:: in-house skybrush developer. In the latter case run it with the
+:: developer with access to the proprietary upstream "skybrush" module. In the latter case run it with the
 :: first argument set to "standalone".
 ::
 :: After running this script, open Blender and add the /dev folder to
 :: Preferences -> "File Paths" -> "Script Directories" to reach the
-:: Skybrush Studio for Blender addon from your local source code.
+:: Motion Canvas addon from your local source code.
 ::
-:: You will need to close and reopen Blender to see Skybrush Studio
+:: You will need to close and reopen Blender to see Motion Canvas
 :: in the list of add-ons. You will also need to close and open Blender
 :: after any code modifications on the source code to take effect.
 ::
-:: Please consider supporting the open-source initiative of Skybrush by the following ways:
-::
-:: - Join our Discord community at https://skybrush.io/r/discord to share your
-::   ideas, thoughts and feedback
-::
-:: - Share your code modifications with the community as a pull-request to the
-::   official repo at https://github.com/skybrush-io/studio-blender
-::
-:: - Donate to support Skybrush development at https://skybrush.io/donate
+:: Share your code modifications with the community as a pull-request to the
+:: official repo at https://github.com/Axiovel-tech/motion-canvas
 ::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

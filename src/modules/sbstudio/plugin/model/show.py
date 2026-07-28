@@ -16,7 +16,7 @@ class DroneShowAddonProperties(PropertyGroup):
     """Custom Blender property representing the properties of the entire drone
     show addon.
 
-    Each Blender scene that is set up for Skybrush will contain one instance
+    Each Blender scene that is set up for Motion Canvas will contain one instance
     of this property.
     """
 

@@ -25,7 +25,7 @@ class AddMarkersFromSVGOperator(StaticMarkerCreationOperator, ImportHelper):
     """
 
     bl_idname = "skybrush.add_markers_from_svg"
-    bl_label = "Import Skybrush SVG"
+    bl_label = "Import SVG"
     bl_description = (
         "Creates a new formation whose points are sampled from an SVG file."
     )
@@ -97,7 +97,7 @@ def parse_svg(
         num_points: the number of points to generate
         size: the maximum extent of the points along the main axes
         angle: maximum angle change at nodes to treat the path continuous around them, in degrees
-        api: the Skybrush Studio API object
+        api: the trajectory engine API object
 
     Returns:
         the parsed list of positions and corresponding colors

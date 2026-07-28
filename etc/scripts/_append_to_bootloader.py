@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Appends a bundled single-file Python distribution of Skybrush Studio for
+"""Appends a bundled single-file Python distribution of Motion Canvas for
 Blender to the end of the bootloader executable (compiled separately in the
 sbstudio-bootloader project) and produces the final executable that can be
 distributed. The final executable invokes Blender and pipes the code of the
