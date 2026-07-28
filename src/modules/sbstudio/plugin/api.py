@@ -28,7 +28,7 @@ log = logging.getLogger(__name__)
 
 @lru_cache(maxsize=1)
 def _get_api_from_url_and_key_or_license(url: str, key: str, license_file: str):
-    """Constructs a Skybrush Studio API object from a root URL and an API key
+    """Constructs a trajectory engine API object from a root URL and an API key
     or a license file.
 
     Memoized so we do not need to re-construct the same instance as long as
@@ -45,10 +45,10 @@ def _get_api_from_url_and_key_or_license(url: str, key: str, license_file: str):
         # community server; the community server must be selected explicitly.
         result.url = url or AXIO_SERVER_URL
     except ValueError as ex:
-        log.error(f"Could not initialize Skybrush Studio API: {str(ex)}")
+        log.error(f"Could not initialize the trajectory engine API: {str(ex)}")
         raise
     except Exception as ex:
-        log.error(f"Unhandled exception in Skybrush Studio API initialization: {ex!r}")
+        log.error(f"Unhandled exception in trajectory engine API initialization: {ex!r}")
         raise
 
     # This is bad practice, but the default installation of Blender does not find
@@ -61,7 +61,7 @@ def _get_api_from_url_and_key_or_license(url: str, key: str, license_file: str):
 
 
 def get_api(*, check_version: bool = True) -> SkybrushStudioAPI:
-    """Returns the singleton instance of the Skybrush Studio API object.
+    """Returns the singleton instance of the trajectory engine API object.
 
     Optionally also checks the version number of the backend if it is not known
     yet.
@@ -106,7 +106,7 @@ def call_api_from_blender_operator(
     Args:
         check_version: whether to check the version number of the backend
     """
-    default_message = f"Error while invoking {what} on the Skybrush Studio server"
+    default_message = f"Error while invoking {what} on the trajectory engine server"
     try:
         # TODO(ntamas): This is not entirely correct here. When an exception happens
         # during get_api(...), we will not yield anything back to the caller. If we

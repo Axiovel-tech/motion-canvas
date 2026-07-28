@@ -6,7 +6,7 @@ __all__ = ("SkybrushStudioAPIError",)
 
 
 class SkybrushStudioAPIError(SkybrushStudioError):
-    """Superclass for all errors related to the Skybrush Studio API."""
+    """Superclass for all errors related to the trajectory engine API."""
 
     pass
 
@@ -38,11 +38,11 @@ class BackendVersionMismatchError(SkybrushStudioAPIError):
     def format_message(self) -> str:
         if self.backend_version:
             return (
-                f"Skybrush Studio Server is outdated ({self.backend_version}). "
+                f"The trajectory engine server is outdated ({self.backend_version}). "
                 f"Please update to {self.minimum_version} or above."
             )
         else:
             return (
-                f"Skybrush Studio Server is outdated. "
+                f"The trajectory engine server is outdated. "
                 f"Please update to {self.minimum_version} or above."
             )

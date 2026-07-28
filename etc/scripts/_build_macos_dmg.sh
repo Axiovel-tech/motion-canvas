@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Creates a macOS .dmg file hosting the executable version of Skybrush
+# Creates a macOS .dmg file hosting the executable version of Motion Canvas
 # Studio for Blender. Requires platypus.
 #
 # This script is not meant to be called directly; it will be called from
@@ -15,19 +15,19 @@ set -e
 
 SCRIPT_ROOT=`dirname $0`
 REPO_ROOT="${SCRIPT_ROOT}/../.."
-NAME="Skybrush Studio for Blender"
+NAME="Motion Canvas"
 
 ###############################################################################
 
 # Parse version number
 VERSION=`cat pyproject.toml|grep ^version|head -1|cut -d '"' -f 2`
 
-EXECUTABLE=skybrush-studio-for-blender-${VERSION}-macos
+EXECUTABLE=motion-canvas-${VERSION}-macos
 
 # Create a launcher shell script
 mkdir -p "${BUILD_DIR}"
 cat >${BUILD_DIR}/launch.sh <<EOF
-echo "Starting Skybrush Studio for Blender..."
+echo "Starting Motion Canvas..."
 ./${EXECUTABLE}
 echo " "
 echo "Blender started successfully."
@@ -42,11 +42,11 @@ platypus \
     -o "Text Window" \
     -V "${VERSION}" \
     -u "CollMot Robotics Ltd" \
-    -I com.collmot.skybrush.studio.blender \
+    -I com.axiovel.motion-canvas.blender \
     -R \
     -y \
     -f dist/${EXECUTABLE} \
-    -i assets/icons/mac/skybrush.icns \
+    -i assets/icons/mac/motion-canvas.icns \
     "${BUILD_DIR}/launch.sh"
 
 # Remove launcher script and any previous .dmg files

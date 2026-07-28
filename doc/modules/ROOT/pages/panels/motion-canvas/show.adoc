@@ -12,7 +12,7 @@ Please specify whether you designed a show for outdoor or indoor settings. This 
 
 == Specify location
 
-If you know the exact location and orientation of your show in the real world, you can give this information to the add-on to include it in your exported .skyc show file for easy placement of your show in *Skybrush Live* later on. If you want to propose values for show origin and show orientation, enable the btn:[Specify location] checkbox.
+If you know the exact location and orientation of your show in the real world, you can give this information to the add-on to include it in your exported .skyc show file for easy placement of your show in *Axio Control* later on. If you want to propose values for show origin and show orientation, enable the btn:[Specify location] checkbox.
 
 === Latitude of show origin
 

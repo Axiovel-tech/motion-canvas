@@ -18,6 +18,6 @@ jobs:
         run: etc/scripts/create_blender_dist.sh
       - uses: actions/upload-artifact@v7
         with:
-          name: skybrush-studio-blender
+          name: motion-canvas-blender
           path: ./dist/*.zip
           archive: false

@@ -11,7 +11,7 @@ __all__ = (
 class FileFormat(Enum):
     """List of file formats that we can potentially use in export panels."""
 
-    # Skybrush formats
+    # Native show formats
     SKYC = "skyc"
     CSV = "csv"
     PDF = "pdf"

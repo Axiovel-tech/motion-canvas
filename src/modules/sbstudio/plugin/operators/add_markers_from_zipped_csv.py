@@ -24,13 +24,13 @@ log = logging.getLogger(__name__)
 
 
 class AddMarkersFromZippedCSVOperator(DynamicMarkerCreationOperator, ImportHelper):
-    """Adds markers from Skybrush-compatible .zip compressed dynamic .csv files
+    """Adds markers from Motion Canvas-compatible .zip compressed dynamic .csv files
     (each containing baked animation of a single drone) to the currently
     selected formation.
     """
 
     bl_idname = "skybrush.add_markers_from_zipped_csv"
-    bl_label = "Import Skybrush zipped CSV"
+    bl_label = "Import zipped CSV"
     bl_options = {"REGISTER", "UNDO"}
 
     update_duration = BoolProperty(
@@ -39,7 +39,7 @@ class AddMarkersFromZippedCSVOperator(DynamicMarkerCreationOperator, ImportHelpe
         description="Update the duration of the storyboard entry based on animation length",
     )
 
-    # List of file extensions that correspond to Skybrush CSV files
+    # List of file extensions that correspond to show CSV files
     filter_glob = StringProperty(default="*.zip", options={"HIDDEN"})
     filename_ext = ".zip"
 
@@ -55,7 +55,7 @@ class AddMarkersFromZippedCSVOperator(DynamicMarkerCreationOperator, ImportHelpe
 def parse_compressed_csv_zip(
     filename: str | IO[bytes],
 ) -> dict[str, TrajectoryAndLightProgram]:
-    """Parse a .zip file containing Skybrush .csv files (one file per drone,
+    """Parse a .zip file containing show .csv files (one file per drone,
     each containing baked animation with timestamped positions and colors).
 
     Args:

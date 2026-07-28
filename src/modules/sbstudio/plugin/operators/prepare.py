@@ -9,7 +9,7 @@ __all__ = ("PrepareSceneOperator",)
 
 class PrepareSceneOperator(Operator):
     """Blender operator that prepares a Blender file to be used with
-    Skybrush Studio for Blender.
+    Motion Canvas.
 
     This involves:
 
@@ -19,7 +19,7 @@ class PrepareSceneOperator(Operator):
     """
 
     bl_idname = "skybrush.prepare"
-    bl_label = "Prepare scene for Skybrush"
+    bl_label = "Prepare scene for Motion Canvas"
     bl_options = {"INTERNAL"}
 
     def execute(self, context):

@@ -6,7 +6,7 @@ Requires the `skybrush-studio` Python module. Contact us if you are interested.
 
 bl_info = {
     "name": "Import All Skybrush-compatible Formats",
-    "author": "Gabor Vasarhelyi (CollMot Robotics Ltd.)",
+    "author": "Axiovel (fork; original by Gabor Vasarhelyi, CollMot Robotics Ltd.)",
     "description": "Imports a Skybrush-compatible file directly into Blender",
     "version": (0, 1, 0),
     "blender": (4, 4, 0),

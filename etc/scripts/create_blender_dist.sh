@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Bash script that creates a single ZIP file containing the full code of
-# Skybrush Studio for Blender so it can simply be extracted in the
+# Motion Canvas so it can simply be extracted in the
 # Blender addons folder.
 #
 # You need to install Python 3 and uv in order to use this script; both

@@ -1,24 +1,11 @@
-Current icon was generated with the _Launcher icon generator_ from the
-_Android Asset Studio_:
+Icons are generated from the Axiovel brand assets: the white V-wing mark on
+the Axiovel teal (#244C5A) rounded-square tile, with #FF4814 as the accent
+color. The canonical vector source is the Axiovel V mark
+(see the company brand assets in the Axiovel company-website repository).
 
-https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
+To regenerate, render the mark SVG at the required sizes:
 
-Background color: #fb7e2a ("Skybrush orange", probably from the Bootstrap
-palette)
-Clipart: all_inclusive
-Font (if we need): Allura
-Padding (if we need text): 0%
-
-Take the 512px version, scale it up to 1024px and add rounded corners in
-GIMP with a corner radius of 180px. Then upload the image to the following
-URL to get it converted to .icns format:
-
-https://cloudconvert.com/
-
-Also add rounded corners to the 512px version with a corner radius of 90px,
-and upload this icon to the following URL to get it converted to .ico format
-for Windows:
-
-https://icoconvert.com/
-
-Favicon was generated with https://favicon.io
+- `splash.png` — 192×192 PNG
+- `linux/motion-canvas.png` — 512×512 PNG
+- `win/motion-canvas.ico` — multi-size ICO (16, 32, 48, 64, 128, 256)
+- `mac/motion-canvas.icns` — ICNS with ic09 (512 PNG) and ic10 (1024 PNG)

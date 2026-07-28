@@ -4,7 +4,7 @@
 
 Once you are finished with your drone show, use the Export panel to export it from Blender to different formats for further processing or direct upload to the drones.
 
-The available output formats depend on whether you selected the "Indoor" or "Outdoor" setting in the xref:panels/skybrush/swarm.adoc[Swarm panel]'s btn:[Show type] dropdown, and also on your specific license purchased at the https://shop.skybrush.io[Skybrush Store].
+The available output formats depend on whether you selected the "Indoor" or "Outdoor" setting in the xref:panels/motion-canvas/swarm.adoc[Swarm panel]'s btn:[Show type] dropdown, and also on the license of the backend you are using.
 
 image::panels/export/export.jpg[Export panel]
 
@@ -14,15 +14,15 @@ Note that export operations require Blender to sample trajectories and lights wh
 To see the progress or predicted remaining time of the export procedure, run Blender from a terminal window or press "Toggle System Console" in the "Windows" menu to watch its terminal log.
 
 
-== Export to Skybrush .skyc
+== Export to .skyc
 
-The Skybrush compiled show format is a single-file descriptor of your complete drone show. It is used as the primary drone show format throughout the entire *Skybrush* suite:
+The compiled (`.skyc`) show format is a single-file descriptor of your complete drone show. It is used as the primary drone show format throughout the entire *Axiovel* suite:
 
 * If you wish to visualize or verify your show or you simply want to send a link with an interactive 3D visualization of the show to your clients, use *Skybrush Viewer*.
 
-* If you want to execute your drone show on your real drones, use *Skybrush Live*.
+* If you want to execute your drone show on your real drones, use *Axio Control*.
 
-If you press the btn:[Export Skybrush SKYC] button, you have to choose the path and filename of your output file. There are also some parameters you can setup conveniently:
+If you press the btn:[Export to .skyc] button, you have to choose the path and filename of your output file. There are also some parameters you can setup conveniently:
 
 Export selected drones only:: Export all or only selected drones
 
@@ -36,18 +36,18 @@ Light FPS:: Set the output frame rate for light programs (make sure it is a subm
 
 Export yaw (PRO):: Enable this checkbox to output rotations around the yaw (vertical) axis of your drone objects into the .skyc file
 
-NOTE: This feature is not supported by our community server. To enable it, please purchase a proper license from https://shop.skybrush.io/[Skybrush Shop].
+NOTE: This feature is not available on the free community server; it requires a backend licensed for this feature.
 
 Export cameras:: Enable this checkbox to export Blender cameras into the .skyc file (to be used by Skybrush Viewer).
 
 
-== Export to Skybrush .csv
+== Export to .csv
 
 The trajectories and LED light colors of the drones can also be sampled at regular intervals and exported to CSV files for further post-processing in external tools. This option appears only if you have installed and enabled the CSV export addon that is distributed separately. The CSV export will produce a single ZIP file that contains multiple CSV files, one for each drone, with the following columns: time (milliseconds), X, Y and Z coordinates (meters) and the red, green and blue components of the color of the LED light, in the usual 0-255 range, in linear color space.
 
-TIP: We recommend using Skybrush Live for drone show control, together with the official Skybrush Compiled Format (.skyc), as it contains a lot more information about your show in a more optimized way than this simple CSV representation.
+TIP: We recommend using Axio Control for drone show control, together with the compiled show format (`.skyc`), as it contains a lot more information about your show in a more optimized way than this simple CSV representation.
 
-If you press the btn:[Export Skybrush CSV] button, you have to choose the path and filename of your output file. There are also some parameters you can setup conveniently:
+If you press the btn:[Export to .csv] button, you have to choose the path and filename of your output file. There are also some parameters you can setup conveniently:
 
 Export selected drones only:: Export all or only selected drones
 
@@ -66,7 +66,7 @@ The validation report starts with a summary of flight statistics and safety test
 
 .IMPORTANT
 ****
-The validation .pdf is created by a local or remote instance of *Skybrush Studio Server* running in the background. As creating the validation report is resource intensive, access to this feature might be disabled on our public server and might be only available through a paid license option. If you need but do not have access, visit https://shop.skybrush.io[Skybrush Store] for obtaining the proper *Skybrush Studio Server* license.
+The validation .pdf is created by the backend server (the local *Axio trajectory engine* by default) running in the background. As creating the validation report is resource intensive, access to this feature might be disabled on the free community server and might require a backend licensed for it.
 ****
 
 If you press the btn:[Export validation report] button, you have to choose the path and filename of your output file. There are also some parameters you can setup conveniently:
@@ -109,9 +109,9 @@ All properties of this multi-export option are the same as the ones for the indi
 
 == Export to various third-party show formats
 
-Upon purchasing a professional license, we provide additional exporters to various external drone show formats, including DSS PATH, DSS PATH3, Drotek, EVSKY, HighGreat DAC, LiteBee, etc.
+Depending on the license of your backend, additional exporters are available to various external drone show formats, including DSS PATH, DSS PATH3, Drotek, EVSKY, HighGreat DAC, LiteBee, etc.
 
-Visit https://shop.skybrush.io[Skybrush Store] to purchase a professional license with third-party exporters. mailto:{contact-email}[Contact us] if you need any additional exporters that are not on the list yet.
+These third-party exporters require a backend licensed for them. mailto:{contact-email}[Contact us] if you need any additional exporters that are not on the list yet.
 
 == Export to external fireworks and show visualization formats
 
@@ -122,9 +122,9 @@ If you are preparing your drone show as part of a larger event, e.g. with firewo
 * External link: https://www.fwsim.com/doc/en/drone_shows.html[FWSim: VVIZ support]
 * External link: https://help.depence.com/depence-construction/drones[Depence: Drones]
 
-WARNING: Even though yaw control and pyro triggering is part of the official .ddsf specification and hence the actual .ddsf files Skybrush exports, according to Depence customer service they only read the trajectories and light program from the .ddsf files so far, not yaw or pyro. Implementation of the latter two is in progress in Depence and we will be notified once it is ready.
+WARNING: Even though yaw control and pyro triggering is part of the official .ddsf specification and hence the actual .ddsf files Motion Canvas exports, according to Depence customer service they only read the trajectories and light program from the .ddsf files so far, not yaw or pyro. Implementation of the latter two is in progress in Depence and we will be notified once it is ready.
 
-Note that our exporters that provide compatibility with these software require a professional license that can be purchased from https://shop.skybrush.io[Skybrush Store].
+Note that our exporters that provide compatibility with these software require a backend licensed for them.
 
 If you press one of the btn:[Export to Finale 3D .vviz] or btn:[Export to Depence .ddsf] buttons, you have to choose the path and filename of your output file. The btn:[Export selected drones only], btn:[Frame range], btn:[Trajectory FPS], btn:[Light FPS] and btn:[Export yaw] options will be available for these export types as well.
 

@@ -26,11 +26,11 @@ End Frame:: Shows or sets the end frame of the formation. Adjusts the duration b
 +
 TIP: Press the btn:[◀] button on the right to set the end frame to the current frame.
 
-Purpose:: Shows or sets the purpose of the given formation. The purpose can be "Takeoff", "Show", "Land" or left "Unspecified". The purpose of a given formation is automatically inferred from the operation you use to create the formation. In practise you usually do not need to modify it manually unless you know what you are doing. The purpose annotation gets written into the .skyc file as a hard requirement for the show adaptation tool in **Skybrush Live**. If you perform onsite show adaptation, only formations marked with the "Show" purpose will be kept from the show, the rest (takeoff and land) will be replaced on the spot based on your actual environment and needs.
+Purpose:: Shows or sets the purpose of the given formation. The purpose can be "Takeoff", "Show", "Land" or left "Unspecified". The purpose of a given formation is automatically inferred from the operation you use to create the formation. In practise you usually do not need to modify it manually unless you know what you are doing. The purpose annotation gets written into the .skyc file as a hard requirement for the show adaptation tool in **Axio Control**. If you perform onsite show adaptation, only formations marked with the "Show" purpose will be kept from the show, the rest (takeoff and land) will be replaced on the spot based on your actual environment and needs.
 
 Custom Name:: Ticking this check box allows you to keep the label of the storyboard entry even if you change the associated formation. Unticking this will change the label of the storyboard entry to the name of the formation when you change the formation.
 
-Transition from previous:: Shows or sets the type of transition between the _previous_ formation and this one. The default is `Auto`, which enables *Skybrush Studio* to find an optimal mapping between the markers of the initial and the target formation. If you want to maintain the mapping yourself, set it to `Manual` instead and then sort the markers of the formation in the Outliner such that they are in the desired order (note that you need to turn off alphabetic ordering in the Outliner first). Blender will then map the nth marker in the initial formation to the nth marker in the target formation.
+Transition from previous:: Shows or sets the type of transition between the _previous_ formation and this one. The default is `Auto`, which enables *Motion Canvas* to find an optimal mapping between the markers of the initial and the target formation. If you want to maintain the mapping yourself, set it to `Manual` instead and then sort the markers of the formation in the Outliner such that they are in the desired order (note that you need to turn off alphabetic ordering in the Outliner first). Blender will then map the nth marker in the initial formation to the nth marker in the target formation.
 +
 You can also select between two fundamental _temporal_ schedules for the transition: `Synchronized` and `Staggered`. In `Synchronized` mode all drones depart from and arrive to the formations at the same time. In `Staggered` mode drones depart and arrive at different times, with a specific delay value between each of them set by the *Departure delay* and *Arrival delay* parameters (see image below).
 +
@@ -61,9 +61,9 @@ Press the upward pointing thin arrow button next to the formation list in the St
 
 == Changing the order of formations
 
-Press the btn:[▲] button next to the formation list in the storyboard to move the selected entry up by one slot in the storyboard. Similarly, the btn:[▼] button next to the formation list moves the selected entry down by one slot in the storyboard. *Skybrush Studio* will automatically adjust the start times of the entries to ensure that they are in ascending order.
+Press the btn:[▲] button next to the formation list in the storyboard to move the selected entry up by one slot in the storyboard. Similarly, the btn:[▼] button next to the formation list moves the selected entry down by one slot in the storyboard. *Motion Canvas* will automatically adjust the start times of the entries to ensure that they are in ascending order.
 
-NOTE: It is possible to mess up the order of entries in the storyboard by changing the start times explicitly in a way that they are not in ascending order any more. *Skybrush Studio* will fix the ordering of the entries the next time the transitions are recalculated, or before any operation for which the add-on needs the exact ordering of entries.
+NOTE: It is possible to mess up the order of entries in the storyboard by changing the start times explicitly in a way that they are not in ascending order any more. *Motion Canvas* will fix the ordering of the entries the next time the transitions are recalculated, or before any operation for which the add-on needs the exact ordering of entries.
 
 == Recalculating transitions
 
@@ -75,4 +75,4 @@ The popup menu that appears when clicking on the button offers various options t
 
 == Updating time markers from the storyboard
 
-The main cues of the storyboard can be rendered as time markers that appear in the Timeline Editor. To reset all time markers related to *Skybrush Studio* and update them based on the current storyboard entries, press the btn:[Update Time Markers] button at the bottom of the Storyboard panel (markers added manually will remain untouched).
+The main cues of the storyboard can be rendered as time markers that appear in the Timeline Editor. To reset all time markers related to *Motion Canvas* and update them based on the current storyboard entries, press the btn:[Update Time Markers] button at the bottom of the Storyboard panel (markers added manually will remain untouched).

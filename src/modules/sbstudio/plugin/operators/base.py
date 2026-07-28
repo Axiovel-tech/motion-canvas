@@ -144,7 +144,7 @@ class StoryboardEntryOperator(Operator):
 
 class ExportOperator(Operator, ExportHelper):
     """Operator mixin for operators that export the scene in some format using
-    the Skybrush Studio API.
+    the trajectory engine API.
     """
 
     # whether to output all objects or only selected ones
@@ -227,7 +227,7 @@ class ExportOperator(Operator, ExportHelper):
 
     def get_settings(self) -> dict[str, Any]:
         """Returns operator-specific renderer settings that should be passed to
-        the Skybrush Studio API.
+        the trajectory engine API.
         """
         return {}
 

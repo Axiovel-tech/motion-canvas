@@ -1,9 +1,9 @@
-= Skybrush Studio for Blender User Guide
+= Motion Canvas User Guide
 {company-name} <{contact-email}>
 v2.6.0, {docdatetime}
 :doctype: book
 :encoding: utf-8
-:homepage: https://skybrush.io
+:homepage: https://axiovel.com
 :lang: en
 :sectnums:
 :toc:
@@ -34,15 +34,15 @@ include::pages/panels/index.adoc[]
 
 :leveloffset: +1
 
-include::pages/panels/skybrush.adoc[]
+include::pages/panels/motion-canvas.adoc[]
 
 :leveloffset: +1
 
-include::pages/panels/skybrush/setup.adoc[]
+include::pages/panels/motion-canvas/setup.adoc[]
 
-include::pages/panels/skybrush/show.adoc[]
+include::pages/panels/motion-canvas/show.adoc[]
 
-include::pages/panels/skybrush/swarm.adoc[]
+include::pages/panels/motion-canvas/swarm.adoc[]
 
 :leveloffset: -1
 

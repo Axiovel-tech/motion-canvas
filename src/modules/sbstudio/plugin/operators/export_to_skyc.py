@@ -15,13 +15,13 @@ __all__ = ("SkybrushExportOperator",)
 
 
 class SkybrushExportOperator(ExportOperator):
-    """Export object trajectories and light animation into the Skybrush compiled format (.skyc)"""
+    """Export object trajectories and light animation into the compiled show format (.skyc)"""
 
     bl_idname = "export_scene.skybrush"
-    bl_label = "Export Skybrush SKYC"
+    bl_label = "Export .skyc"
     bl_options = {"REGISTER"}
 
-    # List of file extensions that correspond to Skybrush files
+    # List of file extensions that correspond to .skyc files
     filter_glob = StringProperty(default="*.skyc", options={"HIDDEN"})
     filename_ext = ".skyc"
 

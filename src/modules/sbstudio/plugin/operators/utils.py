@@ -72,13 +72,13 @@ def export_show_to_file_using_api(
     filepath: str | Path,
     format: FileFormat,
 ) -> None:
-    """Creates Skybrush-compatible output from Blender trajectories and color
+    """Creates Motion Canvas-compatible output from Blender trajectories and color
     animation.
 
-    This is a helper function for Skybrush export operators.
+    This is a helper function for Motion Canvas export operators.
 
     Parameters:
-        api: the Skybrush Studio API object
+        api: the trajectory engine API object
         context: the main Blender context
         settings: export settings dictionary
         filepath: the output path where the export should write
@@ -222,9 +222,9 @@ def export_show_to_file_using_api(
 
     renderer_params = {}
 
-    # create Skybrush converter object
+    # create show converter object
     if format is FileFormat.SKYC:
-        log.info("Exporting show to Skybrush .skyc format")
+        log.info("Exporting show to .skyc format")
         renderer = "skyc"
     elif format is FileFormat.PDF:
         log.info("Exporting validation plots to .pdf")
@@ -242,7 +242,7 @@ def export_show_to_file_using_api(
             {"plots": ",".join(plots), "fps": fps, "single_file": True},
         ]
     elif format is FileFormat.CSV:
-        log.info("Exporting show to Skybrush .csv format")
+        log.info("Exporting show to .csv format")
         renderer = "csv"
         renderer_params = {
             "fps": settings["output_fps"],
@@ -252,7 +252,7 @@ def export_show_to_file_using_api(
         renderer = "dac"
         renderer_params = {
             "show_id": 1555,
-            "title": "Skybrush show",
+            "title": "Motion Canvas show",
             "model": settings["drone_model"],
             "gcs": settings["gcs_type"],
         }

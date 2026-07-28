@@ -18,10 +18,10 @@ class SkybrushSKYCAndPDFExportOperator(ExportOperator):
     """Export object trajectories and light animation into .skyc and .pdf formats in one request"""
 
     bl_idname = "export_scene.skybrush_and_pdf"
-    bl_label = "Export Skybrush SKYC+PDF"
+    bl_label = "Export .skyc + PDF"
     bl_options = {"REGISTER"}
 
-    # List of file extensions that correspond to the zipped Skybrush files
+    # List of file extensions that correspond to the zipped show files
     filter_glob = StringProperty(default="*.zip", options={"HIDDEN"})
     filename_ext = ".zip"
 

@@ -21,7 +21,7 @@ __all__ = (
 
 
 def add_pyro_marker_to_object(ob: Object, channel: int, marker: PyroMarker) -> None:
-    """Add a pyro marker to the Skybrush context of an object.
+    """Add a pyro marker to the Motion Canvas context of an object.
 
     Args:
         object: the object to add the new pyro marker to
@@ -34,7 +34,7 @@ def add_pyro_marker_to_object(ob: Object, channel: int, marker: PyroMarker) -> N
 
 
 def get_pyro_markers_of_object(ob: Object) -> PyroMarkers:
-    """Get pyro markers from the Skybrush context of an object.
+    """Get pyro markers from the Motion Canvas context of an object.
 
     Args:
         object: the object to get pyro markers from
@@ -103,7 +103,7 @@ def remove_pyro_particle_system(ob: Object, channel: int) -> None:
 
 
 def set_pyro_markers_of_object(ob: Object, markers: PyroMarkers) -> None:
-    """Set pyro markers of an object in its Skybrush context.
+    """Set pyro markers of an object in its Motion Canvas context.
 
     Args:
         object: the object to set pyro markers of

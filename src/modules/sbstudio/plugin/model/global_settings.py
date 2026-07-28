@@ -11,7 +11,7 @@ __all__ = ("DroneShowAddonGlobalSettings",)
 
 
 class DroneShowAddonGlobalSettings(AddonPreferences):
-    """Global settings of the Skybrush Studio addon.
+    """Global settings of the Motion Canvas addon.
 
     This is active only when the addon is installed in the Blender add-on manager,
     not when it is provided to Blender dynamically at startup.
@@ -30,7 +30,7 @@ class DroneShowAddonGlobalSettings(AddonPreferences):
 
     api_key: str = StringProperty(
         name="API Key",
-        description="API Key that is used when communicating with the Skybrush Studio server",
+        description="API Key that is used when communicating with the trajectory engine server",
     )
 
     server_url: str = StringProperty(

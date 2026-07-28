@@ -6,7 +6,7 @@ Requires the `skybrush-studio` Python module. Contact us if you are interested.
 
 bl_info = {
     "name": "Import Skybrush Script Format (.sky)",
-    "author": "Tamas Nepusz (CollMot Robotics Ltd.)",
+    "author": "Axiovel (fork; original by Tamas Nepusz, CollMot Robotics Ltd.)",
     "description": "Import a Skybrush file directly into Blender",
     "version": (0, 1, 0),
     "blender": (4, 4, 0),

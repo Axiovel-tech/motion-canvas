@@ -1,21 +1,18 @@
 [project]
-name = "skybrush-studio-for-blender"
+name = "motion-canvas"
 version = "4.3.0"
-description = "Skybrush Studio for Blender is a professional drone show designer framework integrated into Blender"
+description = "Motion Canvas is Axiovel's professional drone show designer framework integrated into Blender"
 license = "GPL-3.0-or-later"
-authors = [{ name = "CollMot Robotics Ltd.", email = "hello@skybrush.io" }]
-maintainers = [
-  { name = "Tamas Nepusz", email = "tamas@collmot.com" },
-  { name = "Gabor Vasarhelyi", email = "vasarhelyi@collmot.com" },
-]
+authors = [{ name = "Axiovel" }]
+maintainers = [{ name = "Axiovel" }]
 package-mode = false
 requires-python = ">=3.11"
 dependencies = ["natsort>=8.0.0"]
 
 [project.urls]
-Homepage = "https://skybrush.io"
-Pepository = "https://github.com/skybrush-io/studio-plugin-blender"
-Documentation = "https://doc.collmot.com/public/skybrush-plugin-blender/latest/"
+Homepage = "https://axiovel.com"
+Repository = "https://github.com/Axiovel-tech/motion-canvas"
+Documentation = "https://github.com/Axiovel-tech/motion-canvas/tree/main/doc"
 
 [dependency-groups]
 dev = ["numpy", "pyclean>=2.0.0"]

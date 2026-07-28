@@ -1,0 +1,13 @@
+= Motion Canvas tab
+:imagesdir: ../../assets/images
+:experimental:
+
+The Motion Canvas tab in the sidebar of the 3D Viewport editor is the first tab you need to use when starting to design a show in *Motion Canvas*. This tab contains general configuration options for your show design workflow.
+
+image::panels/skybrush.jpg[Motion Canvas tab]
+
+The Motion Canvas tab contains three panels:
+
+* xref:panels/motion-canvas/setup.adoc[Setup panel]
+* xref:panels/motion-canvas/show.adoc[Show panel]
+* xref:panels/motion-canvas/swarm.adoc[Swarm panel]
