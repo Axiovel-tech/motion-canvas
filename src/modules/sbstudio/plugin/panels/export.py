@@ -9,6 +9,7 @@ from sbstudio.plugin.operators import (
     DSSPathExportOperator,
     EVSKYExportOperator,
     FinaleCSVExportOperator,
+    GDMExportOperator,
     KMZExportOperator,
     LitebeeExportOperator,
     RefreshFileFormatsOperator,
@@ -46,6 +47,8 @@ class ExportPanel(Panel):
             layout.operator(
                 SkybrushExportOperator.bl_idname, text="Export to .skyc"
             )
+        if FileFormat.GDM in formats:
+            layout.operator(GDMExportOperator.bl_idname, text="Export to .gdm")
         if FileFormat.CSV in formats:
             layout.operator(
                 SkybrushCSVExportOperator.bl_idname, text="Export to .csv"

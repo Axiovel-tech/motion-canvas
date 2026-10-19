@@ -22,6 +22,7 @@ from .export_to_drotek import DrotekExportOperator
 from .export_to_dss import DSSPath3ExportOperator, DSSPathExportOperator
 from .export_to_evsky import EVSKYExportOperator
 from .export_to_finale_csv import FinaleCSVExportOperator
+from .export_to_gdm import GDMExportOperator
 from .export_to_kmz import KMZExportOperator
 from .export_to_litebee import LitebeeExportOperator
 from .export_to_pdf import SkybrushPDFExportOperator
@@ -98,6 +99,7 @@ __all__ = (
     "ExportLightEffectsOperator",
     "FinaleCSVExportOperator",
     "FixConstraintOrderingOperator",
+    "GDMExportOperator",
     "GetFormationStatisticsOperator",
     "ImportLightEffectsOperator",
     "LandOperator",

@@ -41,6 +41,25 @@ NOTE: This feature is not available on the free community server; it requires a 
 Export cameras:: Enable this checkbox to export Blender cameras into the .skyc file (to be used by Skybrush Viewer).
 
 
+== Export to .gdm
+
+The `.gdm` format is Axiovel's successor to `.skyc`. The Axio trajectory engine fits curves whose acceleration is continuous (C²), so drones get a real acceleration feed-forward instead of steps at every joint. `.skyc` stays the production baseline; use btn:[Export to .gdm] to produce the same show in the new format, for example to compare the two in simulation.
+
+The parameters are the same as for btn:[Export to .skyc], with one difference:
+
+Sample at scene frame rate:: On by default. Trajectories are sampled at every frame of the scene (e.g. 24 or 25 per second) instead of 4 per second, because the engine fits its curves to these samples and needs to see the motion as you animated it. Turn it off to set btn:[Trajectory FPS] yourself.
+
+The export reports a warning if a keyframe that moves a drone (on the drone itself, on a formation marker it follows, or on a parent) uses the "Back", "Elastic" or "Bounce" easing. These easings overshoot on purpose, so the exported trajectory overshoots too. The warning tells you that the overshoot comes from the animation, not from the fitter. The file is still exported.
+
+The engine refuses the export, and no file is written, when:
+
+* it has no `.gdm` output. Update the Axio trajectory engine, or use btn:[Export to .skyc];
+* btn:[Export yaw] is on and a drone's heading changes during the show. For now `.gdm` supports one constant heading per drone;
+* the show fails safety certification. The message lists the violations. `.gdm` also requires continuous acceleration at every joint: if that fails while sampling below the scene frame rate, turn btn:[Sample at scene frame rate] back on.
+
+NOTE: `.gdm` needs a trajectory engine with `.gdm` output; the free community server cannot produce it.
+
+
 == Export to .csv
 
 The trajectories and LED light colors of the drones can also be sampled at regular intervals and exported to CSV files for further post-processing in external tools. This option appears only if you have installed and enabled the CSV export addon that is distributed separately. The CSV export will produce a single ZIP file that contains multiple CSV files, one for each drone, with the following columns: time (milliseconds), X, Y and Z coordinates (meters) and the red, green and blue components of the color of the LED light, in the usual 0-255 range, in linear color space.

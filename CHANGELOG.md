@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [main]
 
+### Added
+
+- Export .gdm: a second compiled-show export next to .skyc for the Axiovel
+  .gdm format (ADR 0002), in which the Axio trajectory engine fits C²
+  curves. It samples trajectories at the scene frame rate by default, warns
+  when the animation uses easings that overshoot on purpose (Back, Elastic,
+  Bounce), and explains the engine's refusals: no .gdm support, non-constant
+  yaw, failed certification. The .skyc export is unchanged.
+
 ### Changed
 
 - The `.vviz` exporter received a new time offset parameter to be able to move the
