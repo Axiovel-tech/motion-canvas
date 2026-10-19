@@ -13,6 +13,7 @@ class FileFormat(Enum):
 
     # Native show formats
     SKYC = "skyc"
+    GDM = "gdm"
     CSV = "csv"
     PDF = "pdf"
     SKYC_AND_PDF = "skyc,pdf"
@@ -48,8 +49,10 @@ def update_supported_file_formats_from_limits(limits: Limits) -> None:
     """
     global _file_formats
 
-    # .skyc and CSV are always supported
-    formats: list[FileFormat] = [FileFormat.SKYC, FileFormat.CSV]
+    # .skyc, .gdm and CSV are always offered. The Axio trajectory engine does
+    # not advertise .gdm in its features, so an engine without .gdm output
+    # refuses the export with an explanation instead (ADR 0002 §3).
+    formats: list[FileFormat] = [FileFormat.SKYC, FileFormat.GDM, FileFormat.CSV]
 
     # Add formats from the server (if any)
     for feature in limits.features:

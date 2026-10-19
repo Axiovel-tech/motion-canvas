@@ -15,7 +15,11 @@ Repository = "https://github.com/Axiovel-tech/motion-canvas"
 Documentation = "https://github.com/Axiovel-tech/motion-canvas/tree/main/doc"
 
 [dependency-groups]
-dev = ["numpy", "pyclean>=2.0.0"]
+dev = [
+    "numpy",
+    "pyclean>=2.0.0",
+    "pytest>=9.1.1",
+]
 
 [tool.uv.build-backend]
 module-root = "src/modules"
@@ -42,3 +46,9 @@ exclude = [
 [build-system]
 requires = ["uv_build>=0.11,<0.12"]
 build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+pythonpath = ["src/modules"]
+testpaths = ["tests"]
+# tests/blender runs inside Blender, see the script's docstring
+norecursedirs = ["blender"]

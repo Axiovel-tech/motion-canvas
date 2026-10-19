@@ -13,7 +13,9 @@ from bpy.types import Context
 from natsort import natsorted
 
 from sbstudio.api.base import SkybrushStudioAPI
+from sbstudio.api.errors import SkybrushStudioAPIError
 from sbstudio.model.file_formats import FileFormat
+from sbstudio.model.gdm import explain_gdm_refusal
 from sbstudio.model.light_program import LightProgram
 from sbstudio.model.location import ShowLocation
 from sbstudio.model.safety_check import SafetyCheckParams
@@ -93,6 +95,13 @@ def export_show_to_file_using_api(
     """
 
     log.info(f"Exporting show content to {filepath}")
+
+    # sample trajectories at every frame of the scene if requested
+    if settings.get("use_scene_fps"):
+        settings = {**settings, "output_fps": context.scene.render.fps}
+        log.info(
+            f"Sampling trajectories at the scene rate, {settings['output_fps']} fps"
+        )
 
     # get framerange
     log.info(f"Getting frame range from {settings.get('frame_range')}")
@@ -226,6 +235,9 @@ def export_show_to_file_using_api(
     if format is FileFormat.SKYC:
         log.info("Exporting show to .skyc format")
         renderer = "skyc"
+    elif format is FileFormat.GDM:
+        log.info("Exporting show to .gdm format")
+        renderer = "gdm"
     elif format is FileFormat.PDF:
         log.info("Exporting validation plots to .pdf")
         renderer = "plot"
@@ -315,22 +327,34 @@ def export_show_to_file_using_api(
     else:
         raise RuntimeError(f"Unhandled format: {format!r}")
 
-    api.export(
-        show_title=show_title,
-        show_type=show_type,
-        show_location=show_location,
-        show_segments=show_segments,
-        validation=validation,
-        trajectories=trajectories,
-        lights=lights,
-        pyro_programs=pyro_programs,
-        yaw_setpoints=yaw_setpoints,
-        output=filepath,
-        time_markers=time_markers,
-        cameras=cameras,
-        renderer=renderer,
-        renderer_params=renderer_params,
-    )
+    try:
+        api.export(
+            show_title=show_title,
+            show_type=show_type,
+            show_location=show_location,
+            show_segments=show_segments,
+            validation=validation,
+            trajectories=trajectories,
+            lights=lights,
+            pyro_programs=pyro_programs,
+            yaw_setpoints=yaw_setpoints,
+            output=filepath,
+            time_markers=time_markers,
+            cameras=cameras,
+            renderer=renderer,
+            renderer_params=renderer_params,
+        )
+    except SkybrushStudioAPIError as ex:
+        if format is not FileFormat.GDM:
+            raise
+        explained = explain_gdm_refusal(
+            str(ex),
+            output_fps=settings.get("output_fps"),
+            scene_fps=context.scene.render.fps,
+        )
+        if explained is None:
+            raise
+        raise SkybrushStudioAPIError(explained) from ex
 
     log.info("Export finished")
 
