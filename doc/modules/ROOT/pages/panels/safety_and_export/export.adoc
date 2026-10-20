@@ -49,12 +49,16 @@ The parameters are the same as for btn:[Export to .skyc], with one difference:
 
 Sample at scene frame rate:: On by default. Trajectories are sampled at every frame of the scene (e.g. 24 or 25 per second) instead of 4 per second, because the engine fits its curves to these samples and needs to see the motion as you animated it. Turn it off to set btn:[Trajectory FPS] yourself.
 
+With btn:[Export yaw] on, the yaw is exported too. In `.skyc` the yaw is a list of angles joined by straight lines, so the yaw rate jumps at every corner. In `.gdm` the engine turns it into a smooth curve that rounds each corner, stays within 1° of the `.skyc` yaw, and never exceeds the btn:[Maximum yaw rate].
+
 The export reports a warning if a keyframe that moves a drone (on the drone itself, on a formation marker it follows, or on a parent) uses the "Back", "Elastic" or "Bounce" easing. These easings overshoot on purpose, so the exported trajectory overshoots too. The warning tells you that the overshoot comes from the animation, not from the fitter. The file is still exported.
 
 The engine refuses the export, and no file is written, when:
 
 * it has no `.gdm` output. Update the Axio trajectory engine, or use btn:[Export to .skyc];
-* btn:[Export yaw] is on and a drone's heading changes during the show. For now `.gdm` supports one constant heading per drone;
+* btn:[Export yaw] is on and a drone's yaw jumps faster than the btn:[Maximum yaw rate] of the Safety Check panel (a yaw step). `.gdm` yaw is a smooth curve within that rate, so spread the turn out in the animation; the message says how long it needs;
+* btn:[Export yaw] is on and a drone's yaw reverses too sharply to follow within 1° at the maximum yaw rate. Ease the turn (for example Bezier instead of Linear interpolation) or slow it;
+* btn:[Export yaw] is on and the engine is older than `.gdm` yaw support, which carried only one constant heading per drone. Update the Axio trajectory engine;
 * the show fails safety certification. The message lists the violations. `.gdm` also requires continuous acceleration at every joint: if that fails while sampling below the scene frame rate, turn btn:[Sample at scene frame rate] back on.
 
 NOTE: `.gdm` needs a trajectory engine with `.gdm` output; the free community server cannot produce it.

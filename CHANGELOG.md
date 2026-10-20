@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   when the animation uses easings that overshoot on purpose (Back, Elastic,
   Bounce), and explains the engine's refusals: no .gdm support, non-constant
   yaw, failed certification. The .skyc export is unchanged.
+- Export .gdm carries changing yaw with "Export yaw" on, as a smooth curve
+  within 1° of the .skyc yaw and within the maximum yaw rate (needs an Axio
+  trajectory engine with .gdm yaw). The engine's yaw refusals are explained:
+  an engine with constant headings only, a yaw step faster than the maximum
+  yaw rate, and yaw that reverses too sharply.
 
 ### Changed
 
