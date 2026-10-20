@@ -45,9 +45,16 @@ GDM_BYTES = b"PK\x05\x06" + b"\x00" * 18  # an empty ZIP stands in for a .gdm
 UNSUPPORTED = (
     'output format "gdm" is not supported by this server (supported: skyc, csv, report)'
 )
-YAW = (
+# An engine before feature/gdm-yaw, which carried constant headings only.
+YAW_CONSTANT_ONLY = (
     "unsupported .skyc feature: drone Drone 1: yaw programs need a C¹ yaw "
     "fit for .gdm (not implemented yet)"
+)
+YAW_STEP = (
+    "cannot export to .gdm: drone Drone 2: yaw turns 90.0° in 0.040 s at "
+    "t=1.00s (2250°/s), above the yaw-rate limit 30.0°/s; .gdm yaw stays "
+    "within the limit and a turn (or a yaw step) is not moved in time to "
+    "get there, so spread it over at least 3.00 s, or raise the limit"
 )
 CERT_C2 = (
     "show failed safety certification:\ndrone Drone 1: acceleration steps by "
@@ -127,6 +134,12 @@ def setup_scene() -> None:
         drone.keyframe_insert("location", frame=0)
         drone.location = (index * 3.0, 0.0, 3.0)
         drone.keyframe_insert("location", frame=50)
+
+    # Drone 2 turns 45° about z over the 2 s (22.5°/s, under the 30°/s limit)
+    drone = bpy.data.objects["Drone 2"]
+    drone.keyframe_insert("rotation_euler", frame=0)
+    drone.rotation_euler[2] = 0.785398
+    drone.keyframe_insert("rotation_euler", frame=50)
 
     # Drone 1 climbs with a "Back" easing, which overshoots on purpose
     from sbstudio.plugin.actions import iter_all_f_curves
@@ -237,8 +250,23 @@ def test_engine_without_gdm(engine, reports, out):
     assert UNSUPPORTED in errors[0], errors
 
 
-def test_non_constant_yaw(engine, reports, out):
-    engine.refusal = YAW
+def test_changing_yaw_is_exported(engine, reports, out):
+    path = out / "yaw.gdm"
+    result = reports.run(
+        bpy.ops.export_scene.axio_gdm,
+        filepath=str(path),
+        use_yaw_control=True,
+    )
+
+    assert result == {"FINISHED"}, (result, reports.errors)
+    assert path.read_bytes() == GDM_BYTES
+    settings = engine.requests[-1]["input"]["data"]["swarm"]["drones"][1]["settings"]
+    angles = [angle for _, angle in settings["yawControl"]["setpoints"]]
+    assert abs((angles[-1] - angles[0]) - (-45.0)) < 0.01, angles
+
+
+def test_engine_without_gdm_yaw(engine, reports, out):
+    engine.refusal = YAW_CONSTANT_ONLY
     result = reports.run(
         bpy.ops.export_scene.axio_gdm,
         filepath=str(out / "refused.gdm"),
@@ -246,10 +274,23 @@ def test_non_constant_yaw(engine, reports, out):
     )
 
     assert result == {"CANCELLED"}, result
-    request = engine.requests[-1]
-    assert "yawControl" in request["input"]["data"]["swarm"]["drones"][0]["settings"]
     errors = reports.errors
-    assert "constant heading" in errors[0], errors
+    assert "only a constant heading" in errors[0], errors
+    assert "Update the Axio trajectory engine" in errors[0], errors
+
+
+def test_yaw_step(engine, reports, out):
+    engine.refusal = YAW_STEP
+    result = reports.run(
+        bpy.ops.export_scene.axio_gdm,
+        filepath=str(out / "refused.gdm"),
+        use_yaw_control=True,
+    )
+
+    assert result == {"CANCELLED"}, result
+    errors = reports.errors
+    assert "Maximum yaw rate" in errors[0], errors
+    assert YAW_STEP in errors[0], errors
 
 
 def test_certification_failure_hints_at_sampling(engine, reports, out):

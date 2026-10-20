@@ -154,7 +154,19 @@ _UNSUPPORTED_FORMAT = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
-_YAW = re.compile(r"auto-yaw|yaw program|yaw fit", re.IGNORECASE)
+# An engine whose .gdm writer carries only a constant heading (before
+# axio-trajectory-engine feature/gdm-yaw).
+_YAW_CONSTANT_ONLY = re.compile(
+    r"yaw programs need a C¹ yaw fit|yaw fit for \.gdm", re.IGNORECASE
+)
+
+_AUTO_YAW = re.compile(r"auto-yaw", re.IGNORECASE)
+
+# A turn faster than the max yaw rate (a yaw step is the extreme case).
+_YAW_TOO_FAST = re.compile(r"above the yaw-rate limit", re.IGNORECASE)
+
+# Yaw that turns or reverses too sharply to follow within the tolerance.
+_YAW_SHARP = re.compile(r"no C¹ yaw curve follows", re.IGNORECASE)
 
 _C2 = re.compile(r"acceleration steps|requires C²|C² tolerance", re.IGNORECASE)
 
@@ -178,12 +190,37 @@ def explain_gdm_refusal(
         the explained message, or `None` if the refusal is not one of the
         known `.gdm` cases (the caller then shows it as it is)
     """
-    if _YAW.search(message):
+    if _YAW_CONSTANT_ONLY.search(message):
         return (
-            ".gdm export refused: the engine supports only a constant heading "
-            "per drone in .gdm until it can fit smooth (C¹) yaw. Turn off "
-            '"Export yaw", or keep each drone\'s yaw constant. '
+            "This trajectory engine writes only a constant heading per drone "
+            "in .gdm. Update the Axio trajectory engine to export changing "
+            'yaw as .gdm, or turn off "Export yaw", or keep each drone\'s yaw '
+            f"constant. Engine said: {message}"
+        )
+
+    if _AUTO_YAW.search(message):
+        return (
+            ".gdm export refused: .gdm has no automatic yaw; the heading must "
+            'be animated. Turn off auto-yaw or "Export yaw". '
             f"Engine said: {message}"
+        )
+
+    if _YAW_TOO_FAST.search(message):
+        return (
+            ".gdm export refused: a drone's yaw turns faster than the Maximum "
+            "yaw rate of the Safety Check panel (a yaw step is the extreme "
+            "case). .gdm yaw is a smooth curve within that rate, and the "
+            "engine does not move a turn in time to get there: spread the turn "
+            "over at least the time the engine names, or raise Maximum yaw "
+            f"rate if the drone can turn faster. Engine said: {message}"
+        )
+
+    if _YAW_SHARP.search(message):
+        return (
+            ".gdm export refused: a drone's yaw turns or reverses too sharply "
+            "to follow within 1° at the Maximum yaw rate. Ease the turn in the "
+            "animation (e.g. Bezier interpolation instead of Linear), or slow "
+            f"it down. Engine said: {message}"
         )
 
     if _UNSUPPORTED_FORMAT.search(message):

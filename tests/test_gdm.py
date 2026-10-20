@@ -19,13 +19,28 @@ UNSUPPORTED = (
     'Bad Request: output format "gdm" is not supported by this server '
     "(supported: skyc, csv, report)"
 )
+# An engine before feature/gdm-yaw (constant headings only).
 YAW_PROGRAM = (
     "Bad Request: unsupported .skyc feature: drone Drone 3: yaw programs need "
     "a C¹ yaw fit for .gdm (not implemented yet)"
 )
 AUTO_YAW = (
-    "Bad Request: unsupported .skyc feature: drone Drone 1: auto-yaw has no "
+    "Bad Request: cannot export to .gdm: drone Drone 1: auto-yaw has no "
     ".gdm representation"
+)
+# feature/gdm-yaw (crates/codec/src/gdm_yaw.rs).
+YAW_STEP = (
+    "Bad Request: cannot export to .gdm: drone Drone 2: yaw turns 90.0° "
+    "in 0.040 s at t=1.00s (2250°/s), above the yaw-rate limit 30.0°/s; "
+    ".gdm yaw stays within the limit and a turn (or a yaw step) is not "
+    "moved in time to get there, so spread it over at least 3.00 s, or "
+    "raise the limit"
+)
+YAW_SHARP = (
+    "Bad Request: cannot export to .gdm: drone Drone 4: no C¹ yaw curve "
+    "follows the yaw program within 1.00° and the yaw-rate limit 30.0°/s "
+    "around t=43.989…44.175s; the yaw turns or reverses too sharply there "
+    "for the FLAT segments around it (ease the turn, or slow it)"
 )
 CERT_C2 = (
     "Bad Request: show failed safety certification:\n"
@@ -58,13 +73,33 @@ class TestExplainGdmRefusal:
         assert message is not None
         assert "cannot write .gdm" in message
 
-    @pytest.mark.parametrize("detail", [YAW_PROGRAM, AUTO_YAW])
-    def test_non_constant_yaw(self, detail):
-        message = explain_gdm_refusal(detail)
+    def test_engine_without_gdm_yaw(self):
+        message = explain_gdm_refusal(YAW_PROGRAM)
         assert message is not None
-        assert "constant heading" in message
+        assert "only a constant heading" in message
+        assert "Update the Axio trajectory engine" in message
         assert '"Export yaw"' in message
-        assert detail in message
+        assert YAW_PROGRAM in message
+
+    def test_auto_yaw(self):
+        message = explain_gdm_refusal(AUTO_YAW)
+        assert message is not None
+        assert "no automatic yaw" in message
+        assert AUTO_YAW in message
+
+    def test_yaw_step(self):
+        message = explain_gdm_refusal(YAW_STEP)
+        assert message is not None
+        assert "Maximum yaw rate" in message
+        assert "spread the turn" in message
+        assert "constant heading" not in message
+        assert YAW_STEP in message
+
+    def test_yaw_too_sharp(self):
+        message = explain_gdm_refusal(YAW_SHARP)
+        assert message is not None
+        assert "Ease the turn" in message
+        assert YAW_SHARP in message
 
     def test_certification_failure(self):
         message = explain_gdm_refusal(CERT_SEPARATION, output_fps=25, scene_fps=25)
